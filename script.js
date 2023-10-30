@@ -32,14 +32,12 @@
 
  function arePositionsEqual(element1, element2, range) {
     return (
-        element1.offsetLeft === element2.offsetLeft +range &&
-        element1.offsetLeft === element2.offsetLeft -range &&
-        element1.offsetTop === element2.offsetTop + range &&
-        element1.offsetTop === element2.offsetTop - range 
+        (element1.offsetLeft === element2.offsetLeft +range || element1.offsetLeft === element2.offsetLeft -range) &&
+        (element1.offsetTop === element2.offsetTop + range || element1.offsetTop === element2.offsetTop - range)
     );
 }
 
-if (arePositionsEqual(dragItem, bin)) {
+if (arePositionsEqual(dragItem, bin, 30)) {
     alert("The positions of 'dragItem' and 'bin' are the same.");
 } else {
     
