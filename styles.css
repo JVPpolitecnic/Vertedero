@@ -1,0 +1,34 @@
+body, html {
+    overflow: hidden
+  }
+ 
+  #gameBoard {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+  #background{
+    height: auto;
+
+  }
+  #imgBack{
+    max-width: 100%;
+    height: auto;
+  }
+  #bin {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+}
+.dragable {
+    width: 150px;
+    height: 150px;
+    background-color: #007bff;
+    color: #fff;
+    text-align: center;
+    line-height: 150px;
+    position: absolute;
+    cursor: grab;
+}
