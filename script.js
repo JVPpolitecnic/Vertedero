@@ -4,7 +4,7 @@
 
  let isDragging = false;
  let offset = { x: 0, y: 0 };
-
+checkPosition();
  // Attach event listeners for mouse down, move, and up events
  dragItem.addEventListener("mousedown", function (e) {
      isDragging = true;
@@ -30,15 +30,25 @@
      isDragging = false;
  });
 
- function arePositionsEqual(element1, element2, range) {
-    return (
-        (element1.offsetLeft === element2.offsetLeft +range || element1.offsetLeft === element2.offsetLeft -range) &&
-        (element1.offsetTop === element2.offsetTop + range || element1.offsetTop === element2.offsetTop - range)
-    );
+
+
+ function arePositionsEqual(element1, element2, width, height) {
+    
+       
+      
+if ((element1.style.left >= element2.style.left && element1.style.left <= element2.style.left + width) && 
+(element1.style.top >= element2.style.top  && element1.style.top <=  element2.style.top + height)){
+    alert("true");
+    return true
+
+} else {
+   
+    return false;
 }
 
-if (arePositionsEqual(dragItem, bin, 30)) {
-    alert("The positions of 'dragItem' and 'bin' are the same.");
-} else {
-    
+}
+
+
+function checkPosition(){
+    setInterval(arePositionsEqual(dragItem, bin, bin.style.width, bin.style.height), 500);
 }
