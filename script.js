@@ -1,10 +1,15 @@
  // Get the element to be dragged
  let dragItem = document.getElementById("dragItem");
  let bin = document.getElementById("bin");
+let objecInBinAchieved = false;
 
+ showItemUserIsSearching();
+ checkPositionInterval();
+ objecInBinAchieved = false;
+ 
  let isDragging = false;
  let offset = { x: 0, y: 0 };
-checkPosition();
+showItemUserIsSearching()
  // Attach event listeners for mouse down, move, and up events
  dragItem.addEventListener("mousedown", function (e) {
      isDragging = true;
@@ -32,23 +37,61 @@ checkPosition();
 
 
 
- function arePositionsEqual(element1, element2, width, height) {
-    
-       
-      
-if ((element1.style.left >= element2.style.left && element1.style.left <= element2.style.left + width) && 
-(element1.style.top >= element2.style.top  && element1.style.top <=  element2.style.top + height)){
-    alert("true");
-    return true
+ function arePositionsEqual() {
+    const width = bin.offsetWidth;
+    const height = bin.offsetHeight;
+if ((dragItem.offsetLeft >= bin.offsetLeft && dragItem.offsetLeft <= bin.offsetLeft + width) &&
+    (dragItem.offsetTop >= bin.offsetTop && dragItem.offsetTop <= bin.offsetTop + height)) 
+{
+    changeDragItemIMGSrc();
+    showItemUserIsSearching();
+    isDragging = false;
+    changeItemPosition();
 
-} else {
+
+} else {  
    
-    return false;
 }
 
 }
 
+function changeItemPosition(){
+    dragItem.style.left = "10px";
+    dragItem.style.top = "10px";
+}
 
-function checkPosition(){
-    setInterval(arePositionsEqual(dragItem, bin, bin.style.width, bin.style.height), 500);
+
+function checkPositionInterval(){
+    let positionsEqual;
+    setInterval(function () {
+    arePositionsEqual();
+    console.log("VAR: " + positionsEqual);   
+
+ 500});
+
+}
+
+function showItemUserIsSearching()
+{
+const imgSrcToShow = document.getElementById("imgDragable").getAttribute("src");
+const img = document.getElementById("imgSearchable");
+img.src = imgSrcToShow;
+}
+
+
+function changeDragItemIMGSrc()
+{
+       let newImgSrc;
+       let max = 10;
+       let min = 0;
+       let randNum =  Math.round(Math.random() * (max - min) + min);
+
+       let paths = ["bottle.png", "box.png", "cup.png", "detergent.png", "detergent2.png", "glassjar.png", "mug.png", "newspaper.png", "paperBag.png", "pixelBin.png", "pizzaBox"]
+
+        newImgSrc = 'img/'+ paths[randNum];
+        document.getElementById("imgDragable").src = newImgSrc;
+        console.log("Yes change");
+
+    
+
 }
