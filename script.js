@@ -1,6 +1,7 @@
  // Get the element to be dragged
  let dragItem = document.getElementById("dragItem");
  let bin = document.getElementById("bin");
+ let imgBackground = document.getElementById("imgBack");
 let objecInBinAchieved = false;
 
  showItemUserIsSearching();
@@ -56,8 +57,16 @@ if ((dragItem.offsetLeft >= bin.offsetLeft && dragItem.offsetLeft <= bin.offsetL
 }
 
 function changeItemPosition(){
-    dragItem.style.left = "10px";
-    dragItem.style.top = "10px";
+
+    let minWidth = imgBackground.style.offsetLeft;
+    let minHeight = imgBackground.style.offsetTop;
+    let maxWidth = minWidth + imgBackground.style.width;
+    let maxHeight = minHeight + imgBackground.style.height;
+
+    let randLeft = Math.round(Math.random() * (maxWidth - minWidth) + minWidth);
+    let randTop =  Math.round(Math.random() * (maxHeight - minHeight) + minHeight);
+    dragItem.style.left = randLeft + "px";
+    dragItem.style.top = randTop +"px";
 }
 
 
@@ -82,15 +91,15 @@ img.src = imgSrcToShow;
 function changeDragItemIMGSrc()
 {
        let newImgSrc;
-       let max = 10;
+       let max = 9;
        let min = 0;
        let randNum =  Math.round(Math.random() * (max - min) + min);
 
-       let paths = ["bottle.png", "box.png", "cup.png", "detergent.png", "detergent2.png", "glassjar.png", "mug.png", "newspaper.png", "paperBag.png", "pixelBin.png", "pizzaBox"]
+       let paths = ["bottle.png", "box.png", "cup.png", "detergent.png", "detergent2.png", "glassjar.png", "mug.png", "newspaper.png", "paperBag.png", "pizzaBox.png"]
 
         newImgSrc = 'img/'+ paths[randNum];
         document.getElementById("imgDragable").src = newImgSrc;
-        console.log("Yes change");
+        console.log("new path: "+ newImgSrc);
 
     
 

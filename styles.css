@@ -14,7 +14,9 @@ body, html {
 
   }
   #imgBack{
-    max-width: 100%;
+    top: auto;
+    left: auto;
+    width: 900px;
     height: auto;
   }
   #imgBin{
