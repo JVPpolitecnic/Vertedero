@@ -1,24 +1,6 @@
 body, html {
     overflow: hidden
   }
- 
-  #gameBoard {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-}
-
-  #background{
-    height: auto;
-
-  }
-  #imgBack{
-    top: auto;
-    left: auto;
-    width: 900px;
-    height: auto;
-  }
   #imgBin{
     max-width: 100%;
     height: auto;
@@ -34,17 +16,22 @@ body, html {
   max-width: 100%;
   height: auto;
 }
+#background{
+  position: absolute;
+}
+#clock{
+  position: absolute;
+ top: 50px;
+ left: 490px;
+ color: white;
+}
 .dragable {
-    width: 12px;
-    height: 12px;
+    width: 16px;
+    height: 16px;
     text-align: center;
     line-height: 150px;
     position: absolute;
     cursor: grab;
-}
-.imgSearchable{
-
-
 }
 .card {
   width: 190px;
@@ -59,4 +46,15 @@ body, html {
                 display: flex;
     justify-content: center;
     align-items: center
+ }
+
+ .help {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    
+    box-shadow:
+      0 0 800px 10px ,  /* inner white */
+      0 0 20px 5px rgb(255, 136, 0), /* middle magenta */
+      0 0 30px 18px rgb(255, 208, 0); /* outer cyan */
  }

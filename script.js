@@ -1,11 +1,15 @@
  // Get the element to be dragged
  let dragItem = document.getElementById("dragItem");
  let bin = document.getElementById("bin");
- let imgBackground = document.getElementById("imgBack");
+ let imgBackground = document.getElementById("background");
+ let clock = document.getElementById("clock");
 let objecInBinAchieved = false;
+let seconds = 0;
+
 
  showItemUserIsSearching();
  checkPositionInterval();
+
  objecInBinAchieved = false;
  
  let isDragging = false;
@@ -46,8 +50,10 @@ if ((dragItem.offsetLeft >= bin.offsetLeft && dragItem.offsetLeft <= bin.offsetL
 {
     changeDragItemIMGSrc();
     showItemUserIsSearching();
-    isDragging = false;
     changeItemPosition();
+   seconds = 0;
+    isDragging = false;
+  
 
 
 } else {  
@@ -56,17 +62,25 @@ if ((dragItem.offsetLeft >= bin.offsetLeft && dragItem.offsetLeft <= bin.offsetL
 
 }
 
+function updateClock(){
+    seconds++;  
+    clock.textContent = seconds
+
+ 
+}
+
 function changeItemPosition(){
 
-    let minWidth = imgBackground.style.offsetLeft;
-    let minHeight = imgBackground.style.offsetTop;
-    let maxWidth = minWidth + imgBackground.style.width;
-    let maxHeight = minHeight + imgBackground.style.height;
+    let minWidth = imgBackground.offsetLeft;
+    let minHeight = imgBackground.offsetTop;
+    let maxWidth = minWidth + imgBackground.offsetWidth;
+    let maxHeight = minHeight + imgBackground.offsetHeight;
 
     let randLeft = Math.round(Math.random() * (maxWidth - minWidth) + minWidth);
     let randTop =  Math.round(Math.random() * (maxHeight - minHeight) + minHeight);
     dragItem.style.left = randLeft + "px";
     dragItem.style.top = randTop +"px";
+    dragItem.style.zIndex = 10;
 }
 
 
@@ -74,9 +88,8 @@ function checkPositionInterval(){
     let positionsEqual;
     setInterval(function () {
     arePositionsEqual();
-    console.log("VAR: " + positionsEqual);   
-
- 500});
+    updateClock(); 
+ },1000);
 
 }
 
