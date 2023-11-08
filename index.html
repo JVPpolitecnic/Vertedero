@@ -9,8 +9,12 @@
     
     <link rel="stylesheet" type="text/css" href="styles.css" />
     <div id="gameBoard">
+        <div id="energyBar">
+            <span style='font-size:30px; color: green;'>&#9851;</span>
+            <progress id="load" value="0" max="100" style="background-color: green;"></progress>
+        </div>
                     <div class="dragable" id="dragItem">
-                        <img src="img/glassbottle.png" alt="item" id="imgDragable" class="help">
+                        <img src="img/glassbottle.png" alt="item" id="imgDragable" class="">
                     </div>
                     <div id="bin" style="top: 750px; left: 10px;">
                         <img src="img/pixelBin.png" alt="bin" id="imgBin">

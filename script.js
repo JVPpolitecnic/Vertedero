@@ -2,11 +2,14 @@
  let dragItem = document.getElementById("dragItem");
  let bin = document.getElementById("bin");
  let imgBackground = document.getElementById("background");
+ let imgDragable = document.getElementById("imgDragable");
  let clock = document.getElementById("clock");
+ let progressBar= document.getElementById("load");    
 let objecInBinAchieved = false;
 let seconds = 0;
-
-
+let hints = 5;
+progress = 0;
+placeAmountOfHints();
  showItemUserIsSearching();
  checkPositionInterval();
 
@@ -40,7 +43,18 @@ showItemUserIsSearching()
      isDragging = false;
  });
 
+function placeAmountOfHints(){
+    for (let i = 0; i < hints; i++) {
+        let x = document.createElement("IMG");
+        x.setAttribute("id", "bulb")
+        x.setAttribute("src", "img/img_bulb.png");
+        x.setAttribute("width", "30");
+        x.setAttribute("height", "30");
+        x.setAttribute("alt", "ligth bulb");
+        document.body.appendChild(x);
+      }
 
+}
 
  function arePositionsEqual() {
     const width = bin.offsetWidth;
@@ -51,12 +65,12 @@ if ((dragItem.offsetLeft >= bin.offsetLeft && dragItem.offsetLeft <= bin.offsetL
     changeDragItemIMGSrc();
     showItemUserIsSearching();
     changeItemPosition();
-   seconds = 0;
+    seconds = 0;
     isDragging = false;
-  
-
-
-} else {  
+    imgDragable.classList.remove('help'); 
+    progress+= 5;
+    progressBar.value = progress;
+  } else {  
    
 }
 
@@ -72,7 +86,7 @@ function updateClock(){
 function changeItemPosition(){
 
     let minWidth = imgBackground.offsetLeft;
-    let minHeight = imgBackground.offsetTop;
+    let minHeight = imgBackground.offsetTop -20;
     let maxWidth = minWidth + imgBackground.offsetWidth;
     let maxHeight = minHeight + imgBackground.offsetHeight;
 
@@ -89,6 +103,11 @@ function checkPositionInterval(){
     setInterval(function () {
     arePositionsEqual();
     updateClock(); 
+    if(seconds > 10){
+        imgDragable.classList.add('help'); 
+        hints--;
+        document.
+    }
  },1000);
 
 }
