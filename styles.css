@@ -18,6 +18,7 @@ body, html {
 }
 #background{
   position: absolute;
+  z-index:-2
 }
 #clock{
   position: absolute;
@@ -58,3 +59,42 @@ body, html {
       0 0 20px 5px rgb(255, 136, 0), /* middle magenta */
       0 0 30px 18px rgb(255, 208, 0); /* outer cyan */
  }
+ .girl{
+width: 596px;
+height: 861px;
+ }
+ .eye{
+width: 60px;
+height: 60px;
+left: 10px;
+
+position: absolute;
+background:
+#fff;
+border-radius:50%;
+}
+
+ .pupil{
+  width: 15px;
+height: 15px;
+background:#000;
+border-radius: 50%;
+position: absolute;
+left: 50%;
+top: 50%;
+margin-left: -7.5px;
+margin-top: -7.5px;
+ }
+
+ .eye:nth-child(1){
+  left: 226px;
+  top: 195px;
+  }
+
+  .eye:nth-child(2){
+  left: 290px;
+  top: 199px;
+  }
+  #alisha{
+    z-index: 10;
+  }

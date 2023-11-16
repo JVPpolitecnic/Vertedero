@@ -9,6 +9,9 @@ let objecInBinAchieved = false;
 let seconds = 0;
 let hints = 5;
 progress = 0;
+
+
+
 placeAmountOfHints();
  showItemUserIsSearching();
  checkPositionInterval();
@@ -46,13 +49,26 @@ showItemUserIsSearching()
 function placeAmountOfHints(){
     for (let i = 0; i < hints; i++) {
         let x = document.createElement("IMG");
-        x.setAttribute("id", "bulb")
+        x.setAttribute("data-bulb", i);
+        x.setAttribute("class", "bulb");
         x.setAttribute("src", "img/img_bulb.png");
         x.setAttribute("width", "30");
         x.setAttribute("height", "30");
-        x.setAttribute("alt", "ligth bulb");
+        x.setAttribute("alt", "light bulb");
         document.body.appendChild(x);
       }
+
+}
+
+function changeLightBulb(){
+let lightBulbs = document.querySelectorAll(".bulb");
+
+  
+for (const bulb of lightBulbs) {
+    if(bulb.dataset.bulb == hints){
+        bulb.src = "img/img_bulb_empty.png";
+    }
+}
 
 }
 
@@ -105,8 +121,12 @@ function checkPositionInterval(){
     updateClock(); 
     if(seconds > 10){
         imgDragable.classList.add('help'); 
-        hints--;
-        document.
+        
+        if(seconds < 12){
+            hints--;
+        changeLightBulb(hints);
+        
+    }
     }
  },1000);
 
@@ -133,6 +153,25 @@ function changeDragItemIMGSrc()
         document.getElementById("imgDragable").src = newImgSrc;
         console.log("new path: "+ newImgSrc);
 
+}
+
+const handleMouseMove = (e) => {
+    const {clientX, clientY } = e;
+    console. log({ clientX, clientY});
+    1/0 - 1
+    const {innerwidth, innerHeight } = window;
+    const fractionX = clientX / innerWidth; //0 - 1
+    const fractionY = clientY / innerWidth; //0 - 1
     
+    console. log({fractionX, fractionY});
+    const pupilX = -10 + fractionX * 40;
+    const pupilY = -20 + fractionY * 40;
+    console. log({pupilX, pupilY});
+    document.querySelectorAll('.pupil').forEach(el => {
+    el.style.transform = `translate(${pupilX}px, ${pupilY}px)`;
+    })
 
 }
+
+window.addEventListener ('mousemove', handleMouseMove);
+
